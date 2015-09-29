@@ -6,12 +6,12 @@ namespace Discret
 {
     public class Class1
     {
-        public const Char start = 'a';
-        public const Char end = 'g';
+        public const Char Start = 'a';
+        public const Char End = 'g';
 
         static Class1(){
-            parrent = new List<char>(end-start);
-            for (char i = start; i <= end; i++)
+            parrent = new List<char>(End-Start);
+            for (char i = Start; i <= End; i++)
                 parrent.Add(i);
         }
 
