@@ -37,14 +37,10 @@ namespace Discret
             {
                 var a = new Class1(Read());
                 var b = new Class1(Read());
-                Console.WriteLine("Sub:");
-                ( a & b ).Print();
-                Console.WriteLine("Union:");
-                ( a | b ).Print();
-                Console.WriteLine("Additional A:");
-                ( ~a ).Print();
-                Console.WriteLine("Additional B:");
-                ( ~b ).Print();
+                Console.WriteLine("Sub: {0}", a & b);
+                Console.WriteLine("Union: {0}", a | b);
+                Console.WriteLine("Additional A: {0}", ~a);
+                Console.WriteLine("Additional B: {0}", ~b);
                 Console.WriteLine();
             } while (Console.ReadKey(true).KeyChar != '0');
         }

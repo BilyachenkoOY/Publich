@@ -21,31 +21,32 @@ namespace Discret
 
         private List<Boolean> current;
 
-        public Class1(List<Boolean> Values)
+        public Class1(IList<Boolean> Values)
         {
             if (Values.Count != parrent.Count) throw new ArgumentException("diff lenght");
             
-            current = new List<bool>(Values.Count);
-            foreach (var it in Values)
-                current.Add(it);
+            current = new List<bool>(Values);
         }
 
-        public Class1(List<Char> Values)
+        public Class1(IList<Char> Values)
         {
             current = new List<Boolean>(parrent.Count);
             foreach (var it in parrent)
             {
-                if(Values.Contains(it))
-                    current.Add(true);
-                else current.Add(false);
+                current.Add(Values.Contains(it));
             }
         }
 
-        public void Print( )
+        public override String ToString( )
         {
+            var capacity = parrent.Count * 2 + 10;
+            // Ex: "a " x 10 + \n
+            var builder = new StringBuilder(capacity);
             for (Int16 i = 0; i < parrent.Count; i++)
-                if (current[i]) Console.Write("{0}  ", parrent[i]);
-            Console.WriteLine();
+                if (current[i]) 
+                    builder.AppendFormat("{0}  ", parrent[i]);
+            builder.AppendLine();
+            return builder.ToString();
         }
 
         public static Class1 operator |(Class1 a, Class1 b)
