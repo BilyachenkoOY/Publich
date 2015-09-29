@@ -8,18 +8,16 @@ namespace Discret
 {
     public class Class1
     {
-        static readonly List<Char> parrent;
-
         public const Char start = 'a';
         public const Char end = 'g';
 
         static Class1(){
-            parrent = new List<char>(30);
-            for (char i = start; i < end; i++)
+            parrent = new List<char>(end-start);
+            for (char i = start; i <= end; i++)
                 parrent.Add(i);
         }
 
-        private List<Boolean> current;
+        
 
         public Class1(IList<Boolean> Values)
         {
@@ -49,19 +47,22 @@ namespace Discret
             return builder.ToString();
         }
 
-        public static Class1 operator |(Class1 a, Class1 b)
+        public static Class1 operator |(Class1 first, Class1 second)
         {
-            return new Class1(a.current.Or(b.current));
+            return new Class1(first.current.Or(second.current));
         }
 
-        public static Class1 operator &(Class1 a, Class1 b)
+        public static Class1 operator &(Class1 first, Class1 second)
         {
-            return new Class1(a.current.And(b.current));
+            return new Class1(first.current.And(second.current));
         }
 
-        public static Class1 operator ~(Class1 a)
+        public static Class1 operator ~(Class1 operand)
         {
-            return new Class1(a.current.Not());
+            return new Class1(operand.current.Not());
         }
+
+        static readonly List<Char> parrent;
+        private List<Boolean> current;
     }
 }

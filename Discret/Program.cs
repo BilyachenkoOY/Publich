@@ -31,6 +31,7 @@ namespace Discret
             Console.WriteLine();
             return list;
         }
+        
         static void Main(string[] args)
         {
             do
