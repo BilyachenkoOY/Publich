@@ -6,25 +6,16 @@ namespace Discret
 {
     public class Class1
     {
-        public const Char Start = 'a';
-        public const Char End = 'g';
+        public const int Start = 1;
+        public const int End = 14;
 
         static Class1(){
-            parrent = new List<char>(End-Start);
-            for (char i = Start; i <= End; i++)
+            parrent = new List<int>(End-Start);
+            for (int i = Start; i <= End; i++)
                 parrent.Add(i);
         }
 
-        
-
-        public Class1(IList<Boolean> Values)
-        {
-            if (Values.Count != parrent.Count) throw new ArgumentException("diff lenght");
-            
-            current = new List<bool>(Values);
-        }
-
-        public Class1(IList<Char> Values)
+        public Class1(ICollection<int> Values)
         {
             current = new List<Boolean>(parrent.Count);
             foreach (var it in parrent)
@@ -60,7 +51,12 @@ namespace Discret
             return new Class1(operand.current.Not());
         }
 
-        static readonly List<Char> parrent;
+        private Class1(IList<Boolean> Values)
+        {
+            current = new List<bool>(Values);
+        }
+
+        static readonly List<int> parrent;
         private List<Boolean> current;
     }
 }

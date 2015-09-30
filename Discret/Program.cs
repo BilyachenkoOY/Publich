@@ -6,44 +6,20 @@ namespace Discret
     class Program
     {
         private const Boolean intercept = true;
-        static List<Char> Read( )
-        {
-            List<Char> list = new List<char>(Class1.End - Class1.Start);
-            ConsoleKeyInfo key;
-            do
-            {
-                key = Console.ReadKey(intercept);
-                if (key.KeyChar == '0' || key.Key == ConsoleKey.Enter)
-                    break;
-                if (key.KeyChar >= Class1.Start && key.KeyChar <= Class1.End)
-                {
-                    if (!list.Contains(key.KeyChar))
-                    {
-                        Console.Write("{0} ", key.KeyChar);
-                        list.Add(key.KeyChar);
-                    }
-                }
-            } while (true);
-            Console.WriteLine();
-            return list;
-        }
         
         static void Main(string[] args)
         {
-            ConsoleKeyInfo key;
-            do
-            {
-                var a = new Class1(Read());
-                var b = new Class1(Read());
+            var a = new Class1(new int[] {5, 11, 3, 7, 9, 8, 10});
+            var b = new Class1(new int[] {1, 2, 4, 3, 5, 11});
+            var c = new Class1(new int[] {4, 3, 7, 9, 6});
 
-                Console.WriteLine("Sub: {0}", a & b);
-                Console.WriteLine("Union: {0}", a | b);
-                Console.WriteLine("Additional A: {0}", ~a);
-                Console.WriteLine("Additional B: {0}", ~b);
-                Console.WriteLine();
-
-                key = Console.ReadKey(true);
-            } while (key.KeyChar != '0');
+            Console.WriteLine("A: {0}", a);
+            Console.WriteLine("~B: {0}", ~b);
+            Console.WriteLine("C: {0}", c);
+            
+            Console.WriteLine("A&~B&C: {0}", a & ~b & c);
+            Console.WriteLine("{0}", ( ~( a & ~b & c | a & ~( b & c ) ) | ( ~( a & b ) & c & c ) ) & a & ~b);
+            Console.ReadKey();
         }
     }
 }
