@@ -43,7 +43,11 @@ namespace Discret
 
         public IList<Class1> Generate(bool useParrent = false)
         {
-            var t = new Class1(new int[0], this.ToList());
+            Class1 t;
+            if(useParrent)
+                t = new Class1(new int[0], this.parrent);
+            else
+                t = new Class1(new int[0], this.ToList());
             int count = 2 << (t.current.Count-1);
             var result = new List<Class1>(count);
             for(var i = 0; i < count; i++)
