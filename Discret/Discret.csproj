@@ -44,8 +44,12 @@
     <Compile Include="BaseSet.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Discret3Class1.cs" />
+    <Compile Include="Discret4.cs" />
+    <Compile Include="Discret5.cs" />
+    <Compile Include="Discret6.cs" />
     <Compile Include="ListExtentions.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Program.Demo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

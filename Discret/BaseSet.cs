@@ -6,19 +6,12 @@ using System.Threading.Tasks;
 
 namespace Discret
 {
-    public abstract class BaseSet
+    public abstract class BaseSet<T>
     {
         public const int Start = 1;
         public const int End = 14;
 
-        static BaseSet( )
-        {
-            baseParrent = new List<int>(End-Start);
-            for (int i = Start; i <= End; i++)
-                baseParrent.Add(i);
-        }
-
-        public BaseSet(ICollection<int> Values, IList<int> Parrent)
+        public BaseSet(ICollection<T> Values, IList<T> Parrent)
         {
             parrent = Parrent;
             current = new List<Boolean>(parrent.Count);
@@ -26,6 +19,15 @@ namespace Discret
             {
                 current.Add(Values.Contains(it));
             }
+        }
+
+        public IList<T> ToList( )
+        {
+            var result = new List<T>();
+            for (var i = 0; i < Count; i++)
+                if (this[i])
+                    result.Add(parrent[i]);
+            return result;
         }
 
         public override String ToString( )
@@ -49,7 +51,11 @@ namespace Discret
 
         public int Count { get { return current.Count; } }
 
-        protected BaseSet(IList<Boolean> Values, IList<int> Parrent)
+        public int CountOn(bool on = true) {
+            return current.Count(b => b == on);
+        }
+
+        protected BaseSet(IList<Boolean> Values, IList<T> Parrent)
         {
             if (Values.Count != Parrent.Count)
                 throw new ArgumentException("diff length", "Values");
@@ -69,8 +75,8 @@ namespace Discret
             }
         }
 
-        protected static readonly List<int> baseParrent;
-        protected readonly IList<int> parrent;
-        protected List<Boolean> current;
+        
+        protected readonly IList<T> parrent;
+        protected List<bool> current;
     }
 }

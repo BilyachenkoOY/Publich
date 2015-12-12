@@ -1,46 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Discret
 {
     public partial class Set
     {
-        public static Set operator ++(Set operand)
-        {
-            var result = new Set(operand);
-            for (var i = 0; i < result.Count; i++)
-            {
-                result[i] = !result[i];
-                if (result[i])
-                    break;
-            }
-            return result;
-        }
-
-        public static Set operator --(Set operand)
-        {
-            var result = new Set(operand);
-            for (var i = 0; i < result.Count; i++)
-            {
-                result[i] = !result[i];
-                if (!result[i])
-                    break;
-            }
-            return result;
-        }
-
-        public IList<int> ToList( )
-        {
-            var result = new List<int>(current.Count);
-            for (var i = 0; i < current.Count; i++)
-                if (current[i])
-                    result.Add(parrent[i]);
-            return result;
-        }
-
         public IList<Set> SubSets(bool useParrent = false)
         {
             Set t = Copy(useParrent);
@@ -74,18 +38,19 @@ namespace Discret
             if (k > tmp.Count)
                 throw new ArgumentOutOfRangeException("k");
             var result = new List<Set>();
+            if(k == 0)
+                return result;
             int i;
             for (i = 0; i < k; i++)
                 tmp[i] = true;
-
-            for (i = 0; tmp.current.FindIndex(b => b) < tmp.Count - k; i++)
+            var index = tmp.current.FindIndex(b => b);
+            for (i = 0; index < tmp.Count - k && index != -1; i++)
             {
                 IterateLast(tmp, result);
+                index = tmp.current.FindIndex(b => b);
 
                 IterateSubsets(tmp);
             }
-
-            result.Add(tmp);
             return result;
         }
 
@@ -113,19 +78,48 @@ namespace Discret
                     }
                     else
                     {
-                        for (j--; j > 0; j++)
+                        for (j--; j > 0; j--)
                             if (tmp[j] && !tmp[j + 1])
                             {
-                                tmp[j] = false;
-                                tmp[j + 1] = true;
-                                tmp[j + 2] = true;
-                                break;
+                                if (j + 2 < tmp.Count)
+                                {
+                                    tmp[j] = false;
+                                    tmp[j + 1] = true;
+                                    tmp[j + 2] = true;
+                                    break;
+                                }
                             }
                         break;
                     }
                 }
             }
             tmp[tmp.current.LastIndexOf(true) + 1] = true;
+        }
+        #endregion
+
+        #region operators
+        public static Set operator ++(Set operand)
+        {
+            var result = new Set(operand);
+            for (var i = 0; i < result.Count; i++)
+            {
+                result[i] = !result[i];
+                if (result[i])
+                    break;
+            }
+            return result;
+        }
+
+        public static Set operator --(Set operand)
+        {
+            var result = new Set(operand);
+            for (var i = 0; i < result.Count; i++)
+            {
+                result[i] = !result[i];
+                if (!result[i])
+                    break;
+            }
+            return result;
         }
         #endregion
 

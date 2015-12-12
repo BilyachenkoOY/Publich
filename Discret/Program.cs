@@ -4,40 +4,24 @@ using System.Collections.Generic;
 
 namespace Discret
 {
-    public static class Program
+    public static partial class Program
     {
-        private const Boolean intercept = true;
-        
         static void Main(string[] args)
         {
-            var a = new Set(new int[] {5, 11, 3, 7, 9, 8, 10});
-            var b = new Set(new int[] {1, 2, 4, 3, 5, 11});
-            var c = new Set(new int[] {4, 3, 7, 9, 6});
-            var d = new Set(new int[] { 1, 2, 3, 4, 5});
+            //Second();
+            //Third();
+            //Fourth();
 
-            //WriteLine(d.SubSets().Select(i => i.ToBoleanString()));
-            WriteLine(d.SubSets());
-            //WriteLine(d.SubSetsGray().Select(i => i.ToBoleanString()));
-            WriteLine(d.SubSetsGray());
-            //WriteLine(d.SubSets(3).Select(i => i.ToBoleanString()));
-            WriteLine(d.SubSets(3));
+            Sixth();
 
-            /*second
-            Console.WriteLine("A: {0}", a);
-            Console.WriteLine("~B: {0}", ~b);
-            Console.WriteLine("C: {0}", c);
-            
-            Console.WriteLine("A&~B&C: {0}", a & ~b & c);
-            Console.WriteLine("{0}", ( ~( a & ~b & c | a & ~( b & c ) ) | ( ~( a & b ) & c & c ) ) & a & ~b);
-             */
             Console.ReadKey();
         }
 
-        public static void Write<T>(IEnumerable<T> list)
+        public static void Write<T>(IEnumerable<T> list, string delim = ",")
         {
             foreach (var it in list)
             {
-                Console.Write("{0},", it);
+                Console.Write("{0}{1}", it, delim);
             }
             Console.WriteLine("\b ");
         }
@@ -50,5 +34,7 @@ namespace Discret
             }
             Console.WriteLine();
         }
+
+        
     }
 }

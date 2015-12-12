@@ -4,9 +4,16 @@ using System.Text;
 
 namespace Discret
 {
-    public partial class Set : BaseSet
+    public partial class Set : BaseSet<int>
     {
         #region ctors
+        static Set( )
+        {
+            baseParrent = new List<int>(End-Start);
+            for (int i = Start; i <= End; i++)
+                baseParrent.Add(i);
+        }
+
         public Set( ) : this(new int[0])
         {
         }
@@ -48,5 +55,7 @@ namespace Discret
         {
             return new Set(operand.current.Not());
         }
+
+        protected static readonly List<int> baseParrent;
     }
 }

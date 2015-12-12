@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace Discret
@@ -36,5 +37,33 @@ namespace Discret
             return res;
         }
 
+        public static int FirstIndex<T>(this IList<T> list, Func<T, bool> predicate)
+        {
+            var i = 0;
+            foreach (var t in list)
+            {
+                if (predicate(t))
+                    return i;
+                i++;
+            }
+            return -1;
+        }
+
+        public static int LastIndex<T>(this IList<T> list, Func<T, bool> predicate)
+        {
+            var i = list.Count-1;
+            foreach (var t in list.Reverse())
+            {
+                if (predicate(t))
+                    return i;
+                i--;
+            }
+            return -1;
+        }
+
+        public static IList<T> Clone<T>(this ICollection<T> source)
+        {
+            return new List<T>(source);
+        }
     }
 }
