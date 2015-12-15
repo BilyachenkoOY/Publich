@@ -35,35 +35,9 @@ namespace Discret
 
         public static IList<IList<T>> AntiLex<T>(this ICollection<T> source)
         {
-            /*
-            if (source == null)
-                return null;
-            var result = new List<IList<T>>();
-
-            if (source.Count <= 1)
-            {
-                result.Add(new List<T>(source));
-                return result;
-            }
-
-            var i = source.Count-1;
-            foreach (var t in source.Reverse())
-            {
-                var suf = AntiLex(source.Where((x, index) => index != i).ToList());
-                foreach (var s in suf)
-                {
-                    s.Add(t);
-                    result.Add(new List<T>(s));
-                }
-                i--;
-            }
-
-            return result;
-            */
             ArrayList.Adapter((IList)source).Sort();
 
             return new AntiLexCore<T>(source).Results;
-            /* */
         }
 
         private class AntiLexCore<T>

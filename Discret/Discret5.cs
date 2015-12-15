@@ -6,8 +6,17 @@ using System.Threading.Tasks;
 
 namespace Discret
 {
-    public static class Discret5
+    public partial class Set
     {
-
+        public IList<IList<int>> SubPermutations(int k)
+        {
+            var result = new List<IList<int>>();
+            foreach (var sub in this.SubSets(k))
+            {
+                var antilex = sub.ToList().AntiLex();
+                result.AddRange(antilex);
+            }
+            return result;
+        }
     }
 }

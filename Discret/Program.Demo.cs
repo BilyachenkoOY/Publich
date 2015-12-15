@@ -60,7 +60,26 @@ namespace Discret
 
         private static void Fiveth( )
         {
+            var k = 4;
+            var set = new Set(new int[] { 1, 2, 3, 4, 5 });
+            var permutCount = Factorial(k);
+            var i = 0;
+            foreach (var sub in set.SubPermutations(k))
+            {
+                Write(sub, " ");
+                i++;
+                if (i % permutCount == 0)
+                    Console.WriteLine();
+            }
+            Console.WriteLine("\r\n{0}", set.SubPermutations(k).Count);
+        }
 
+        private static int Factorial(int x)
+        {
+            var res=1;
+            for (; x>1; x--)
+                res*=x;
+            return res;
         }
 
         private static void Sixth( )

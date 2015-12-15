@@ -40,11 +40,18 @@ namespace Discret
             var result = new List<Set>();
             if(k == 0)
                 return result;
-            int i;
-            for (i = 0; i < k; i++)
+            
+            for (var i = 0; i < k; i++)
                 tmp[i] = true;
+
+            if (k == tmp.Count)
+            {
+                result.Add(tmp);
+                return result;
+            }
+
             var index = tmp.current.FindIndex(b => b);
-            for (i = 0; index < tmp.Count - k && index != -1; i++)
+            for (var i = 0; index < tmp.Count - k && index != -1; i++)
             {
                 IterateLast(tmp, result);
                 index = tmp.current.FindIndex(b => b);
